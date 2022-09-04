@@ -7,23 +7,8 @@ require('dotenv').config(); // Import dotenv
 const app = express(); // Create express app
 //NODE SERVER
 const server = require('http').createServer(app);// Create server
-const io = require('socket.io')(server);
-
-//SOCKET MESSAGES
-io.on('connection', client => {
-    console.log('Client connected...');
-    client.on('disconnect', () => {
-        console.log('User disconnected');
-    }); // Listen for disconnect
-
-    client.on('mensaje',(payload)=>{
-        console.log('Mensaje recibido',payload);
-        io.emit('mensaje',{admin:'LO RECIBI!!!'});
-    })
-
-});
-
-
+module.exports.io = require('socket.io')(server); // Export io
+require('./sockets/socket.js'); // Import socket
 
 
 
