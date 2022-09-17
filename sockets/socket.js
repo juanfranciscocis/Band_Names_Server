@@ -13,4 +13,10 @@ io.on('connection', client => {
         io.emit('mensaje',{admin:'LO RECIBI!!!'});
     })
 
+    client.on('newMessage', (payload) => {
+        //console.log('New message', payload);
+        //io.emit('newMessage', payload); // Emit newMessage to all clients
+        client.broadcast.emit('newMessage', payload); // Emit newMessage to all clients except the one that sent it
+    }); // Listen for newMessage
+
 }); // Listen for connection

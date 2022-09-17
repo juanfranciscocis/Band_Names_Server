@@ -26,6 +26,10 @@
 		  console.log('Servidor:', payload);
 	  });
 
+      socket.on('newMessage', function(payload) {
+          console.log('Servidor:', payload);
+      });
+
 	</script>
   </body>
 </html>
