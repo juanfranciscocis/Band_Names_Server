@@ -14,11 +14,20 @@
 		console.log('Conectado al servidor');
 	  });
 
+
+      socket.on('active-bands',function (payload){
+          console.table(payload);
+      });
+
+
+
+
+
 	  socket.on('disconnect', function() {
 		  console.log('Perdimos comunicacion con el servidor');
 	  });
 
-	  socket.emit('mensaje', {
+/*	  socket.emit('mensaje', {
 		  nombre: 'Juan Francisco',
 	  });
 
@@ -28,7 +37,9 @@
 
       socket.on('newMessage', function(payload) {
           console.log('Servidor:', payload);
-      });
+      });*/
+
+
 
 	</script>
   </body>
