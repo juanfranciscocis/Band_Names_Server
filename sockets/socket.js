@@ -23,6 +23,11 @@ io.on('connection', client => {
         io.emit('active-bands', bands.getBands()); // Emit active bands
     });
 
+    client.on('add-band', (payload) => {
+        bands.addBand(new Band(payload.name)); // Add a new band
+        io.emit('active-bands', bands.getBands()); // Emit active bands
+    });
+
     client.on('disconnect', () => {
         console.log('User disconnected');
     }); // Listen for disconnect
