@@ -28,6 +28,11 @@ io.on('connection', client => {
         io.emit('active-bands', bands.getBands()); // Emit active bands
     });
 
+    client.on('delete-band', (payload) => {
+        bands.deleteBand(payload.id); // Delete a band
+        io.emit('active-bands', bands.getBands()); // Emit active bands
+    });
+
     client.on('disconnect', () => {
         console.log('User disconnected');
     }); // Listen for disconnect
