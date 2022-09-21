@@ -9,12 +9,19 @@ console.log('init socket'); // Log that the socket has been initialized
 bands.addBand(new Band('Queen')); // Add a new band
 bands.addBand(new Band('Quevedo')); // Add a new band
 bands.addBand(new Band('Metalica')); // Add a new band
+bands.addBand(new Band('Linton')); // Add a new band
 
 //SOCKET MESSAGES
 io.on('connection', client => {
     console.log('Client connected...');
 
     client.emit('active-bands', bands.getBands()); // Emit active bands
+
+    client.on('vote-band', (payload) => {
+        //console.log(payload);
+        bands.voteBand(payload.id); // Vote for a band
+        io.emit('active-bands', bands.getBands()); // Emit active bands
+    });
 
     client.on('disconnect', () => {
         console.log('User disconnected');

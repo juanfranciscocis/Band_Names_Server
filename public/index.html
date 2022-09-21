@@ -14,13 +14,10 @@
 		console.log('Conectado al servidor');
 	  });
 
-
       socket.on('active-bands',function (payload){
+          console.clear();
           console.table(payload);
       });
-
-
-
 
 
 	  socket.on('disconnect', function() {
